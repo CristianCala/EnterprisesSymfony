@@ -1,0 +1,8 @@
+# ignore for symfony
+
+/logs
+/.data
+.env
+
+# ignore for node modules
+/node_modules
