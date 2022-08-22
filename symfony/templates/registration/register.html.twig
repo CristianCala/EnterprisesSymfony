@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Registro de usuario{% endblock %}
+
+{% block stylesheets %}
+    {{ encore_entry_link_tags('pages/new_enterprise') }}
+{% endblock %}
+
+{% block body %}
+    <div class="m-0 vh-100 row justify-content-center align-items-center">
+        <div class="card p-5 shadow-lg border-0" style="width: 28rem;">
+            <h1 class="h3 fw-bold">Registro de Usuario</h1>
+            <p class="text-muted">
+                Por favor ingrese los datos a continuación
+            </p>
+            {{ form_start(registrationForm) }}
+                {{ form_row(registrationForm.username, {'attr': {'class': 'form-control rounded border-color'}}) }}
+                {{ form_row(registrationForm.plainPassword,{'attr': {'class': 'form-control rounded border-color mt-4'}}) }}
+                {{ form_row(registrationForm.agreeTerms, {'attr': {'class': 'mb-4 mt-2'}}) }}
+
+                <button type="submit" class="btn btn-lg btn-primary rounded px-5">
+                    Registrar
+                </button>
+                {# <a href="{{ url('app_company') }}" class="btn btn-lg btn-outline-danger rounded ms-4 px-5">Volver</a> #}
+            {{ form_end(registrationForm) }}
+        </div>
+    </div>
+{% endblock %}

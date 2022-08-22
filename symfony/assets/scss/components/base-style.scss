@@ -1,0 +1,12 @@
+@import '../constants/app';
+@import '../overrides/bootstrap';
+
+body {
+    font-size: 1rem;
+    background: $bg-color;
+}
+
+.btn:focus {
+    box-shadow: none !important;
+    transform: scale(1.1);
+}
