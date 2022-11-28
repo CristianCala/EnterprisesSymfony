@@ -1,5 +1,4 @@
 name: Laravel
-run-name: Laravel
 
 on:
   push:
