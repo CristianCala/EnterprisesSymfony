@@ -32,21 +32,23 @@ class OfferController extends AbstractController
     {
         $user = $this->getUser();
 
-        $applicant = $entityManager->getRepository(Applicant::class)->findOneBy(
+        if ( $applicant = $entityManager->getRepository(Applicant::class)->findOneBy(
             [
                 'user' => $user,
             ]
-        );
+        )){
 
-        $offer->addApplicant($applicant);
+            $offer->addApplicant($applicant);
+            $entityManager->persist($offer);
 
-        try {
-            $entityManager->flush();
-            $this->addFlash('Success', 'Solicitud Recibida');
-        } catch (\Exception $e) {
-            $this->addFlash('Danger', 'La solicitud no pudo almacenarse. Por favor, intente nuevamente');
-        };
+            try {
+                $entityManager->flush();
+                $this->addFlash('Success', 'Solicitud recibida!');
+            } catch (\Exception $exception) {
+                $this->addFlash('Danger', 'La solicitud no pudo almacenarse. Por favor intente nuevamente.');
+            }
 
-        return $this->redirectToRoute('offers');
+            return $this->redirectToRoute('offers');
+        }
     }
 }
