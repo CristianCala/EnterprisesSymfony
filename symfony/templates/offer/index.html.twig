@@ -4,24 +4,26 @@
 {% endblock %}
 
 {% block body %}
-    <div id="flash-messages">
-        {% for messages in app.flashes %}
-            {% for message in messages %}
-                <p>{{ message }}</p>
-            {% endfor %}
-        {% endfor %}
-    </div>
-    <div>
-        <h1>Ofertas disponibles</h1>
-        <a href="{{ url('offer_apply', {id: offers.id}) }}">Nueva oferta</a>
-        {% if offers|length > 0 %}
-            <ul>
-                {% for offer in offers %}
-                    <li>{{ offer.title }}</li>
+    <div class="container p-2">
+        <div id="flash-messages">
+            {% for messages in app.flashes %}
+                {% for message in messages %}
+                    <p>{{ message }}</p>
                 {% endfor %}
-            </ul>
-        {% else %}
-            <p class="fw-bold text-danger">No hay ofertas aún</p>
-        {% endif %}
+            {% endfor %}
+        </div>
+        <div>
+            <h1 class="fw-bold">Ofertas disponibles</h1>
+            {% if offers|length > 0 %}
+                <ul>
+                    {% for offer in offers %}
+                        <li>{{ offer.title }}</li>
+                        <a href="{{ url('offer_apply', {id: offers.id}) }}">Aplicar</a>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <p class="fw-bold text-danger">No hay ofertas aún</p>
+            {% endif %}
+        </div>
     </div>
 {% endblock %}
