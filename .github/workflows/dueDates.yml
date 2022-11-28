@@ -1,6 +1,5 @@
 name: Laravel
-
-# on push pull and merged in master#
+run-name: Laravel
 
 on:
   push:
@@ -33,22 +32,3 @@ jobs:
         run: php artisan key:generate
       - name: run unit/integration test
         run: php artisan test
-
-  telegramMaster:
-    runs-on: ubuntu-latest
-    needs: build-image
-    if: ${{ always() }}
-    steps:
-      - name: Telegram Notification
-        uses: appleboy/telegram-action@master
-        with:
-          to: -1001520639770
-          token: 5624501498:AAHqqL41XJYkcJFlzXDaEqyOLkooS9blSJU
-          message: |
-            ${{ github.actor }} Created a new Pull Request or Pushed new changes:
-            Title: ${{ github.event.pull_request.title }}
-            Branch: ${{ github.event.pull_request.head.ref }}
-            Assignee: ${{ github.event.pull_request.assignee.login }}
-            Current status: **${{ needs.build-image.result }}**
-            Created at: ${{ github.event.pull_request.created_at }}
-            See changes: https://github.com/${{ github.repository }}/commit/${{github.sha}}
