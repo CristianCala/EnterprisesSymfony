@@ -1,0 +1,13 @@
+name: Manage TODO
+
+on:
+  schedule:
+    - cron: '0/10 * * * *'
+  issues:
+    types: [opened, edited]
+
+jobs:
+  update-todo:
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: ikanago/issue-deadline-manager@v1
