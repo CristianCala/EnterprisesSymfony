@@ -36,4 +36,4 @@ jobs:
           exclude-branches: "release/**, dependabot/**"
       # OPTIONAL: Use the output from the `check-linked-issues` step
       - name: Get the output
-        run: echo "${{ toJSON(steps.check-linked-issues.outputs) }}"
+        run: ${{ toJSON(steps.check-linked-issues.outputs) }}
