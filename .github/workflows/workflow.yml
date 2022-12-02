@@ -17,6 +17,11 @@ jobs:
         uses: actions/github-script@v3
         with:
           script: |
-            const issueNumber = context.payload.pull_request.head
-            console.log(issueNumber)
-
+            const issue = await github.issues.get({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: 1
+            })
+            const comment = issue.data.body
+            console.log(comment)
+            core.setOutput('comment', comment)
