@@ -1,13 +1,10 @@
-name: PHP Composer
+name: Manage TODO
 
 on:
-  push:
-    branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
-
-permissions:
-  contents: read
+  schedule:
+    - cron: '0/10 * * * *'
+  issues:
+    types: [opened, edited]
 
 jobs:
   update-todo:
