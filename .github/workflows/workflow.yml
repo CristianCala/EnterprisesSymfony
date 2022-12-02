@@ -1,4 +1,4 @@
-name: PHP Composer
+name: dueDate
 
 on:
   push:
@@ -10,12 +10,9 @@ permissions:
   contents: read
 
 jobs:
-  getCommentOnIssue:
+  dueDate:
+    name: Add labels to issues
     runs-on: ubuntu-latest
     steps:
-      - name: Get Comment
-        uses: actions/github-script@v3
-        with:
-          script: |
-            const issueNumber = github.event
-            console.log(issueNumber)
+      - name: GitHub Issue Due Dates Action
+        uses: alexleventer/github-issue-due-dates-action@1.2.0
