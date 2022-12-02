@@ -17,5 +17,6 @@ jobs:
         uses: actions/github-script@v3
         with:
           script: |
-            const issueNumber = context.payload.pull_request.base
+            const issueNumber = context.payload.pull_request._links
             console.log(issueNumber)
+
