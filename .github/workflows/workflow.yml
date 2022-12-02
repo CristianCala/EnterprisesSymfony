@@ -30,7 +30,7 @@ jobs:
     runs-on: ubuntu-latest
     name: Check linked issues
     steps:
-      - uses: nearform/github-action-check-linked-issues@v1
+      - uses: kin/gh-action-get-linked-issues@v1.0
         id: check-linked-issues
         with:
           exclude-branches: "release/**, dependabot/**"
