@@ -17,5 +17,5 @@ jobs:
         uses: actions/github-script@v3
         with:
           script: |
-            const issueNumber = context.pull_request.base
+            const issueNumber = context.pull_request
             console.log(comment)
