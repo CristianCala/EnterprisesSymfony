@@ -38,7 +38,6 @@ jobs:
       - name: Move Issues to Ready for Review Column
         uses: kin/gh-action-move-issue-to-column@1.0
         with:
-          access-token: "${{ secrets.CROSS_REPO_TOKEN }}"
           target-column: "Ready for Review"
           issues: ${{ steps.linked-issues.outputs.issues }}
 
