@@ -20,8 +20,38 @@ jobs:
             const issue = await github.issues.get({
               owner: context.repo.owner,
               repo: context.repo.repo,
-              issue_number: 1
+              issue_number: 18
             })
             const comment = issue.data.body
             console.log(comment)
             core.setOutput('comment', comment)
+  checkComment:
+    runs-on: ubuntu-latest
+    needs: getCommentOnIssue
+    steps:
+      - name: Check Comment
+        id: check
+        run: |
+          comment=${{ needs.getCommentOnIssue.outputs.comment }}
+          if [[ $comment == *"due date"* ]]; then
+            echo "::set-output name=hasDueDate::true"
+          else
+            echo "::set-output name=hasDueDate::false"
+          fi # check if comment has due date
+  addComment:
+    runs-on: ubuntu-latest
+    needs: checkComment
+    if: ${{ needs.checkComment.outputs.hasDueDate == 'false' }}
+    steps:
+      - name: Add Comment
+        uses: actions/github-script@v3
+        with:
+          script: |
+            const issueNumber = context.payload.issue.number
+            const comment = "Please add a due date to this issue."
+            await github.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: issueNumber,
+              body: comment
+            })
