@@ -17,5 +17,5 @@ jobs:
         uses: actions/github-script@v3
         with:
           script: |
-            const issueNumber = github
+            const issueNumber = github.event.issue.title
             console.log(issueNumber)
